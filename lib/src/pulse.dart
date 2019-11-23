@@ -30,18 +30,17 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
-    _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
-      ..addListener(
-        () => setState(() {}),
-      );
 
-    _controller.repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _animation = CurveTween(curve: Curves.easeInOut).animate(_controller);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+
     super.dispose();
   }
 
@@ -61,14 +60,7 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
     );
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : DecoratedBox(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: widget.color,
-            ),
-          );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color));
 }
