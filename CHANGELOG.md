@@ -2,7 +2,9 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
-## 4.0.0
+## 4.0.1
+
+- This very minor release focuses on improving code quality across all spinners
 
 ### Feature
 
